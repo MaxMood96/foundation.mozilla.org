@@ -96,7 +96,7 @@
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
-    "browserslist": "^4.16.1",
+    "browserslist": "^4.16.5",
     "chokidar-cli": "^2.1.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.21.0",
@@ -108,7 +108,7 @@
     "stylelint": "^13.11.0",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-prettier": "^1.2.0",
-    "svgo": "^2.2.2",
+    "svgo": "^2.3.1",
     "wait-on": "^5.2.1"
   }
 }
