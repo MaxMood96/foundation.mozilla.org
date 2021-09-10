@@ -18,12 +18,11 @@ else:
 locale_abstraction_instructions = " ".join(
     [
         "makemessages",
+        "--all",
         "--keep-pot",
         "--no-wrap",
         "--ignore=network-api/networkapi/wagtailcustomization/*",
-        "--ignore=network-api/networkapi/wagtail_l10n_customization/*",
         "--ignore=network-api/networkapi/settings.py",
-        "--ignore=network-api/networkapi/wagtailpages/__init__.py",
         "--ignore=network-api/networkapi/wagtailpages/templates/wagtailpages/pages/dear_internet_page.html",
         "--ignore=dockerpythonvenv/*",
     ]
@@ -33,10 +32,13 @@ locale_abstraction_instructions_js = " ".join(
     [
         "makemessages",
         "-d djangojs",
+        "--all",
         "--keep-pot",
         "--no-wrap",
         "--ignore=node_modules",
         "--ignore=dockerpythonvenv/*",
+        "--ignore=network-api",
+        "--ignore=cypress",
     ]
 )
 
@@ -72,9 +74,6 @@ def create_env_file(env_file):
 
 # Project setup and update
 def l10n_block_inventory(ctx):
-    print("* Updating localizable fields")
-    l10n_sync(ctx)
-    l10n_update(ctx)
     print("* Updating block information")
     manage(ctx, "block_inventory")
 
@@ -202,8 +201,6 @@ def manage(ctx, command):
 def migrate(ctx):
     """Updates database schema"""
     manage(ctx, "migrate --no-input")
-    l10n_sync(ctx)
-    l10n_update(ctx)
 
 
 @task(aliases=["docker-makemigrations"])
@@ -237,19 +234,6 @@ def test_node(ctx):
     """Run node tests"""
     print("* Running tests")
     ctx.run("docker-compose run --rm watch-static-files npm run test")
-
-
-# Localisation
-@task(aliases=["docker-l10n-sync"])
-def l10n_sync(ctx):
-    """Sync localizable fields in the database"""
-    manage(ctx, "sync_page_translation_fields")
-
-
-@task(aliases=["docker-l10n-update"])
-def l10n_update(ctx):
-    """Update localizable field data (copies from original unlocalized to default localized field)"""
-    manage(ctx, "update_translation_fields")
 
 
 @task(aliases=["docker-makemessages"])

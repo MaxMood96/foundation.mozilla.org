@@ -21,8 +21,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 # from wagtail.core import urls as wagtail_urls
 from .utility import watail_core_url_override as wagtail_urls
+from .sitemaps import sitemap
 
-from wagtail.contrib.sitemaps.views import sitemap
 from wagtail_footnotes import urls as footnotes_urls
 from networkapi.wagtailcustomization.image_url_tag_urls import urlpatterns as image_url_tag_urls
 from networkapi.views import EnvVariablesView, review_app_help_view
@@ -34,10 +34,17 @@ admin.autodiscover()
 urlpatterns = list(filter(None, [
     # Add robots.txt to exclude the thimble artifact page
     path('robots.txt', lambda x: HttpResponse(
-        "User-Agent: *\nDisallow: /*artifacts/thimble",
-        content_type="text/plain; charset=utf-8"),
-         name="robots_file"
-         ),
+        'User-Agent: *\nDisallow: /*/artifacts/thimble\nDisallow: /artifacts/thimble',
+        content_type='text/plain; charset=utf-8'),
+        name='robots_file'
+        ),
+
+    # Google verification
+    path('googled2a9d510ca850787.html', lambda x: HttpResponse(
+        'google-site-verification: googled2a9d510ca850787.html',
+        content_type='text/html; charset=utf-8'),
+        name='googled2a9d510ca850787.html'
+        ),
 
     # social-sign-on routes so that Google auth works
     re_path(r'^soc/', include('social_django.urls', namespace='social')),
@@ -62,17 +69,19 @@ urlpatterns = list(filter(None, [
     re_path(r'^cms/', include(wagtailadmin_urls)),
     re_path(r'^en/cms/', RedirectView.as_view(url='/cms/')),
     re_path(r'^documents/', include(wagtaildocs_urls)),
-    re_path(r'^sitemap.xml$', sitemap),
 
     # Sentry test url
     path('sentry-debug', lambda r:  1 / 0) if settings.SENTRY_DSN and settings.DEBUG else None,
 
     # set up set language redirect view
     path('i18n/setlang/', csrf_exempt(set_language), name='set_language'),
-    path('jsi18n/', cache_page(3600)(JavaScriptCatalog.as_view()), name='javascript-catalog'),
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 
     # Wagtail Footnotes package
     path("footnotes/", include(footnotes_urls)),
+
+    # redirect /pt to /pt-BR. See https://github.com/mozilla/foundation.mozilla.org/issues/5993
+    re_path(r'^pt/(?P<rest>.*)', RedirectView.as_view(url='/pt-BR/%(rest)s', query_string=True, permanent=True)),
 ]))
 
 # Anything that needs to respect the localised
@@ -88,6 +97,8 @@ urlpatterns += i18n_patterns(
 
     # wagtail-managed data
     re_path(r'', include(wagtail_urls)),
+
+    path('sitemap.xml', cache_page(86400)(sitemap)),
 )
 
 if settings.USE_S3 is not True:
@@ -104,3 +115,8 @@ if settings.DEBUG:
 # Use a custom 404 handler so that we can serve distinct 404
 # pages for each "site" that wagtail services.
 handler404 = 'networkapi.wagtailpages.views.custom404_view'
+
+# Use a custom 500 handler if and only if Django refuses to give any stack
+# traces for server error 500... And even then, do not use this on prod.
+if settings.FORCE_500_STACK_TRACES is True:
+    handler500 = 'networkapi.utility.custom_url_handlers.server_error_500_handler'

@@ -11,13 +11,19 @@
     font-style: italic;
   }
 
-  p {
+  & main p {
     font-weight: 300;
 
     a {
       font-weight: 700;
       color: $blue;
     }
+  }
+
+  .dark-theme p a {
+    /* stylelint-disable */
+    color: #b7b9fa;
+    /* stylelint-enable */
   }
 
   .hero-heading {
@@ -108,6 +114,7 @@
 
       @include hover-focus-active {
         color: $youtube-regrets-dark-red;
+        background: $youtube-regrets-offwhite;
       }
     }
 
@@ -122,35 +129,27 @@
 
       @include hover-focus-active {
         color: $youtube-regrets-dark-red;
+        background: $youtube-regrets-offwhite;
       }
     }
 
     @include hover-focus-active {
       // todo - state styles (also update chrome download and firefox download above)
       color: $white;
+      background: $youtube-regrets-darker-red;
     }
   }
 
   .transition-bg {
     background: linear-gradient(
         180deg,
-        $youtube-regrets-dark-gray 9.33%,
-        $black 43.89%,
+        $youtube-regrets-dark-blue 26.46%,
+        $black 57.83%,
         $black 100%
       ),
       linear-gradient(0deg, $black, $black);
     border-radius: 0 0 30px 30px;
     overflow: hidden;
-
-    @media (min-width: $bp-md) {
-      background: linear-gradient(
-          180deg,
-          $youtube-regrets-purple 26.46%,
-          $black 57.83%,
-          $black 100%
-        ),
-        linear-gradient(0deg, $black, $black);
-    }
   }
 
   .hero {
@@ -295,6 +294,15 @@
     @include set-text-size(14px, 14px);
   }
 
+  .our-research {
+    border-right: 2px solid $black;
+    border-left: 2px solid $black;
+    border-bottom: 2px solid $black;
+    border-radius: 0 0 30px 30px;
+    padding-top: 4.875rem;
+    margin-top: -30px;
+  }
+
   .regrets-chart-meta {
     display: flex;
     justify-content: space-between;
@@ -360,6 +368,15 @@
 
       &:last-child {
         background-color: $black;
+        margin-top: -30px;
+
+        .yt-regrets-accordion__mask {
+          padding-top: 3.875rem;
+
+          @media (min-width: $bp-md) {
+            padding-top: 5.375rem;
+          }
+        }
       }
     }
 
@@ -457,13 +474,17 @@
     padding: 150px 0 100px;
 
     @media (min-width: $bp-md) {
-      padding: 300px 0 200px;
+      padding: 230px 0 200px;
     }
   }
 
   .recommendations {
     background-color: $black;
     padding-top: 85px;
+
+    &__title {
+      @include set-text-size(30px, 34px, 52px, 60px);
+    }
 
     &__recommendation {
       @include set-text-size(24px, 30px, 28px, 30px);
@@ -486,6 +507,7 @@
   }
 
   @import "./youtube-regrets-2021-utils";
+  @import "../../../node_modules/swiper/swiper-bundle";
   @import "./youtube-regrets-2021-carousel";
   @import "./youtube-regrets-2021-carousel-hero";
 }
