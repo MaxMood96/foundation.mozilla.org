@@ -21,7 +21,7 @@ coverage==5.1
     # via coveralls
 coveralls==3.0.1
     # via -r dev-requirements.in
-cryptography==3.2
+cryptography==3.3.2
     # via
     #   -c requirements.txt
     #   pyopenssl
@@ -76,3 +76,4 @@ zipp==3.4.1
     # via
     #   -c requirements.txt
     #   importlib-metadata
+urllib3>=1.26.5 # not directly required, pinned by Snyk to avoid a vulnerability
