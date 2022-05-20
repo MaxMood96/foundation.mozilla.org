@@ -139,7 +139,7 @@ psycopg2-binary==2.8.6
     # via -r requirements.in
 pycparser==2.20
     # via cffi
-pyjwt==1.7.1
+pyjwt==2.4.0
     # via social-auth-core
 pyopenssl==20.0.1
     # via urllib3
