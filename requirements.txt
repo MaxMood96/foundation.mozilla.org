@@ -47,7 +47,7 @@ defusedxml==0.6.0
     #   social-auth-core
 dj-database-url==0.5.0
     # via -r requirements.in
-django==3.0.14
+django==3.2.15
     # via
     #   -r requirements.in
     #   django-admin-sortable
@@ -131,7 +131,7 @@ oauthlib==3.1.0
     #   social-auth-core
 openpyxl==3.0.5
     # via tablib
-pillow==7.1.0
+pillow==9.0.1
     # via wagtail
 psutil==5.8.0
     # via scout-apm
@@ -193,7 +193,7 @@ social-auth-core==3.3.3
     # via social-auth-app-django
 soupsieve==2.0.1
     # via beautifulsoup4
-sqlparse==0.3.1
+sqlparse==0.4.2
     # via django
 tablib[xls,xlsx]==2.0.0
     # via wagtail
@@ -212,7 +212,7 @@ urllib3[secure]==1.25.9
     #   requests
     #   scout-apm
     #   sentry-sdk
-wagtail==2.12.5
+wagtail==2.15.2
     # via
     #   -r requirements.in
     #   wagtail-airtable
@@ -252,3 +252,4 @@ zipp==3.4.1
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
+urllib3>=1.26.5 # not directly required, pinned by Snyk to avoid a vulnerability
