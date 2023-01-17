@@ -105,7 +105,7 @@ faker==4.14.1
     #   factory-boy
 filebrowser-safe==0.5.0
     # via -r requirements.in
-future==0.18.2
+future==0.18.3
     # via -r requirements.in
 gunicorn==20.0.4
     # via -r requirements.in
