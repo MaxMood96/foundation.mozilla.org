@@ -156,7 +156,7 @@ pytz==2020.1
     #   django
     #   django-modelcluster
     #   l18n
-redis==3.5.1
+redis==4.3.6
     # via django-redis
 requests==2.25.1
     # via
