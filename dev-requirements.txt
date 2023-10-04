@@ -76,3 +76,4 @@ zipp==3.4.1
     # via
     #   -c requirements.txt
     #   importlib-metadata
+urllib3>=1.26.17 # not directly required, pinned by Snyk to avoid a vulnerability
