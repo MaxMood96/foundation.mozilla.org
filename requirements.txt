@@ -131,7 +131,7 @@ oauthlib==3.1.0
     #   social-auth-core
 openpyxl==3.0.5
     # via tablib
-pillow==7.1.0
+pillow==10.2.0
     # via wagtail
 psutil==5.8.0
     # via scout-apm
@@ -212,7 +212,7 @@ urllib3[secure]==1.25.9
     #   requests
     #   scout-apm
     #   sentry-sdk
-wagtail==2.12.5
+wagtail==5.2rc1
     # via
     #   -r requirements.in
     #   wagtail-airtable
