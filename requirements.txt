@@ -158,7 +158,7 @@ pytz==2020.1
     #   l18n
 redis==3.5.1
     # via django-redis
-requests==2.25.1
+requests==2.32.0
     # via
     #   -r requirements.in
     #   airtable-python-wrapper
