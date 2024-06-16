@@ -21,7 +21,7 @@ coverage==5.1
     # via coveralls
 coveralls==3.0.1
     # via -r dev-requirements.in
-cryptography==3.2
+cryptography==42.0.8
     # via
     #   -c requirements.txt
     #   pyopenssl
