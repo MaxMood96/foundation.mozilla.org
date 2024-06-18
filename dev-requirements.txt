@@ -68,7 +68,7 @@ typing-extensions==3.7.4.3
     # via
     #   -c requirements.txt
     #   importlib-metadata
-urllib3[secure]==1.25.9
+urllib3==1.26.19
     # via
     #   -c requirements.txt
     #   requests
