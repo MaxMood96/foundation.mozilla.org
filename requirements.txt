@@ -205,7 +205,7 @@ tqdm==4.15.0
     # via wagtail-inventory
 typing-extensions==3.7.4.3
     # via importlib-metadata
-urllib3[secure]==1.25.9
+urllib3==1.26.19
     # via
     #   botocore
     #   cloudinary
