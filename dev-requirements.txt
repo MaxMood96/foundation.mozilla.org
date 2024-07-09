@@ -72,7 +72,7 @@ urllib3[secure]==1.25.9
     # via
     #   -c requirements.txt
     #   requests
-zipp==3.4.1
+zipp==3.19.1
     # via
     #   -c requirements.txt
     #   importlib-metadata
